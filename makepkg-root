@@ -1174,14 +1174,6 @@ if (( LOGGING )) && ! ensure_writable_dir "LOGDEST" "$LOGDEST"; then
 	plainerr "$(gettext "Aborting...")"
 	exit $E_FS_PERMISSIONS
 fi
-
-if (( ! INFAKEROOT )); then
-	if [[ -z $FAKEROOTKEY ]]; then
-		error "$(gettext "Do not use the %s option. This option is only for internal use by %s.")" "'-F'" "makepkg"
-		exit $E_INVALID_OPTION
-	fi
-fi
-
 unset pkgname "${pkgbuild_schema_strings[@]}" "${pkgbuild_schema_arrays[@]}"
 unset "${known_hash_algos[@]/%/sums}"
 unset -f pkgver prepare build check package "${!package_@}"
